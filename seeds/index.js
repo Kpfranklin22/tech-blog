@@ -1,4 +1,4 @@
-const seedUsers = require("./user");
+const seedUsers = require("./User");
 const seedPosts = require("./post");
 const seedComments = require("./comment");
 
