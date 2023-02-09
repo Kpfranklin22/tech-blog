@@ -35,7 +35,7 @@ const commentData = [
     post_id: 3,
   },
   {
-    comment_text: "lol I remember when my first code",
+    comment_text: "lol I remember my first code",
     user_id: 2,
     post_id: 5,
   },
