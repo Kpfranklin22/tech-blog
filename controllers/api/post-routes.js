@@ -34,6 +34,7 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
     attributes: ["id", "content", "title", "created_at"],
+    order: [["created_at", "DESC"]],
     include: [
       {
         model: User,
@@ -103,6 +104,7 @@ router.delete("/:id", withAuth, (req, res) => {
   Post.destroy({
     where: {
       id: req.params.id,
+      user_id: req.session.user_id
     },
   })
     .then((dbPostData) => {

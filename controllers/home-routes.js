@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("homepage", { posts, loggedIn: req.session.loggedIn });
+      res.render("homepage", { posts, loggedIn: req.session.loggedIn, username: req.session.username });
     })
     .catch((err) => {
       console.log(err);
@@ -29,6 +29,17 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({
@@ -58,7 +69,7 @@ router.get("/post/:id", (req, res) => {
       }
       const post = dbPostData.get({ plain: true });
       console.log(post);
-      res.render("single-post", { post, loggedIn: req.session.loggedIn });
+      res.render("single-post", { post, loggedIn: req.session.loggedIn, username:req.session.username });
     })
     .catch((err) => {
       console.log(err);
@@ -93,7 +104,7 @@ router.get("/posts-comments", (req, res) => {
       }
       const post = dbPostData.get({ plain: true });
 
-      res.render("posts-comments", { post, loggedIn: req.session.loggedIn });
+      res.render("posts-comments", { post, loggedIn: req.session.loggedIn, username:req.session.username });
     })
     .catch((err) => {
       console.log(err);
