@@ -10,6 +10,8 @@
   - [Questions](#questions)
   - [License](#license)
 
+![tech-blog-02092023 herokuapp com_](https://user-images.githubusercontent.com/115495027/218562392-cd0f6fdd-7c88-4e56-9092-a00c91824ca5.png)
+
 ## Description
   This is a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers' posts as well. This app will follow the MVC paradigm in its architectural structure: using Handlebars.js as the templating language, Sequelize as the ORM, the express-session npm package for authentification, and will be deployed using Heroku.
 
