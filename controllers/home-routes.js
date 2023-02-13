@@ -2,7 +2,6 @@ const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 
-
 router.get("/", (req, res) => {
   Post.findAll({
     attributes: ["id", "title", "content", "created_at"],
@@ -23,7 +22,11 @@ router.get("/", (req, res) => {
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("homepage", { posts, loggedIn: req.session.loggedIn, username: req.session.username });
+      res.render("homepage", {
+        posts,
+        loggedIn: req.session.loggedIn,
+        username: req.session.username,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -31,16 +34,16 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
-  res.render('login');
+  res.render("login");
 });
 
-router.get('/signup', (req, res) => {
-  res.render('signup');
+router.get("/signup", (req, res) => {
+  res.render("signup");
 });
 
 router.get("/post/:id", (req, res) => {
@@ -71,7 +74,11 @@ router.get("/post/:id", (req, res) => {
       }
       const post = dbPostData.get({ plain: true });
       console.log(post);
-      res.render("single-post", { post, loggedIn: req.session.loggedIn, username:req.session.username });
+      res.render("single-post", {
+        post,
+        loggedIn: req.session.loggedIn,
+        username: req.session.username,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -106,7 +113,11 @@ router.get("/posts-comments", (req, res) => {
       }
       const post = dbPostData.get({ plain: true });
 
-      res.render("posts-comments", { post, loggedIn: req.session.loggedIn, username:req.session.username });
+      res.render("posts-comments", {
+        post,
+        loggedIn: req.session.loggedIn,
+        username: req.session.username,
+      });
     })
     .catch((err) => {
       console.log(err);

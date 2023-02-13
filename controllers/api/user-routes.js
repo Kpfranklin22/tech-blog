@@ -124,7 +124,6 @@ router.put("/:id", (req, res) => {
     });
 });
 
-
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -134,7 +133,6 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
-
 
 router.delete("/:id", (req, res) => {
   User.destroy({
